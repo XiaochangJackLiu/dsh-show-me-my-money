@@ -1,0 +1,9 @@
+* text=auto eol=lf
+
+*.js text
+*.json text
+*.md text
+*.yml text
+*.svg text
+
+LICENSE text

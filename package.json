@@ -1,0 +1,44 @@
+{
+  "name": "@local/show-me-my-money",
+  "version": "1.0.0",
+  "description": "Composer-dock spend meter for DeepSeek Harness: current-turn and session cost, idle/peak pricing, and a price table refreshed from DeepSeek's published list.",
+  "license": "MIT",
+  "author": "Xiaochang Liu",
+  "homepage": "https://github.com/XiaochangJackLiu/dsh-show-me-my-money#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XiaochangJackLiu/dsh-show-me-my-money.git"
+  },
+  "bugs": {
+    "url": "https://github.com/XiaochangJackLiu/dsh-show-me-my-money/issues"
+  },
+  "private": true,
+  "type": "module",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "bundle",
+    "cost",
+    "pricing",
+    "tokens"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": ["index.js", "client.js", "cordis.patch.yml", "locale/*.json", "docs", "icon.svg"],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  }
+}

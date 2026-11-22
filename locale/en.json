@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Composer spend",
+    "description": "Shows the estimated cost of the current turn and of the whole session under the message composer; open the reading for the most recent request, its token breakdown, and the idle and peak prices in use. Unit prices refresh from DeepSeek's published price page in the background (every 6 hours by default, or on demand with Sync official prices), and the same ~/.dsh/show-me-my-money.json can be edited in the panel or by an agent. Every figure is an estimate from provider-reported tokens times those prices, not a bill.",
+    "detail": "docs/DETAIL.md"
+  }
+}

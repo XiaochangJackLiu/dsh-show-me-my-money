@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Local runtime state that must never be committed
+show-me-my-money.json
+prices.json
+*.local.json
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and scratch output
+*.log
+*.tmp
