@@ -138,6 +138,8 @@ node --check client.js
 
 用已安装的插件当预览：改 `client.js` 后刷新页面；改 `index.js` 后重新加载插件行。
 
+仓库的文档规范与开发规范（含完成定义与各层验证方法）见 [AGENTS.md](AGENTS.md)。
+
 ## 许可证
 
 [MIT](LICENSE)

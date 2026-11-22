@@ -226,6 +226,9 @@ node --check client.js
 The installed plugin is the preview: refresh the page after changing
 `client.js`; reload the plugin row after changing `index.js`.
 
+Repository conventions — documentation rules, runtime boundaries, the definition
+of done, and how to verify each layer — live in [AGENTS.md](AGENTS.md).
+
 ## License
 
 [MIT](LICENSE)

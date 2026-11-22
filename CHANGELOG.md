@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Nothing yet.
+### Added
+
+- `AGENTS.md`: documentation and development conventions for agents working in
+  this repository, including the definition of done and the verification recipes
+  for each layer.
+
+### Changed
+
+- Both READMEs point at `AGENTS.md` from their Development section.
 
 ## [1.0.0] - 2026-11-22
 
