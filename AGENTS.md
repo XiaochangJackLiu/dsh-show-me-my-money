@@ -93,7 +93,37 @@
 - **客户端**：改 `client.js` 后刷新页面；改 `index.js` 后重载插件行（或重启 DSH）。用已安装的插件当预览，不要造 mock 页面。
 - **没有浏览器控制时**，只能声明"语法、清单、路由、数据链路已验证"，**不得**声明"界面已确认"。视觉结论必须写明未验证。
 
-## 五、不要做
+## 五、发版流程
+
+发版 = 一次提交 + 一个附注标签 + 一个 GitHub Release。顺序固定，不要跳步。
+
+1. **对齐变更**：`git log --oneline <上个标签>..HEAD` 过一遍；确认每处用户可见变更都已在 `CHANGELOG.md` 的 `Unreleased` 里，README 中英两份已同步。
+2. **改版本号**：`package.json` 的 `version` 改成 `x.y.z`。
+3. **收口 CHANGELOG**：把 `## [Unreleased]` 改成 `## [x.y.z] - YYYY-MM-DD`，并在最上面新加一个空的 `## [Unreleased]`。
+4. **提交**：`git commit -m "chore(release): x.y.z"`。
+5. **打附注标签**（必须 `-a`，轻量标签不带发布信息）：
+   ```bash
+   git tag -a vX.Y.Z -m "Show me my money X.Y.Z"
+   ```
+6. **推**：`git push origin main`，再**单独**推标签 `git push origin vX.Y.Z`——普通 push 不会带走标签。
+7. **写 Release notes**：从 CHANGELOG 对应小节整理成给用户看的版本（功能、安装、限制），写到仓库**外**的临时文件，不要把 notes 提交进仓库。
+8. **建 Release**（在仓库根目录执行，`-R` 可省略，gh 从 origin 推断）：
+   ```bash
+   gh release create vX.Y.Z --title "Show me my money X.Y.Z" --notes-file <临时文件> --verify-tag
+   ```
+   `--verify-tag` 会在远端标签不存在时直接报错，避免 gh 用当前 HEAD 现造一个标签。预发布加 `--prerelease`。
+9. **验证**：
+   ```bash
+   gh release view vX.Y.Z --json tagName,isPrerelease,url
+   gh release list                     # 第一行应标着 Latest
+   gh api repos/{owner}/{repo}/git/ref/tags/vX.Y.Z --jq .object.sha
+   ```
+   确认标签指向的提交就是要发的那个、列表里标 Latest、没有误标 pre-release。注意不同 gh 版本的 `--json` 字段集合不同（有的版本没有 `isLatest`，用 `gh release list` 看最新标记即可），写进文档的命令必须先在当前版本上跑通。
+10. **发错了就回滚**：`gh release delete vX.Y.Z --yes` → `git push origin --delete vX.Y.Z` → `git tag -d vX.Y.Z`，修好后整套重来。**不要**在已删除的同名标签上直接重发。
+
+发版前确认仓库可见性符合预期（`gh repo view --json visibility`）：Release 页面一旦创建就对所有能访问仓库的人可见。
+
+## 六、不要做
 
 - 不要把运行时的 `show-me-my-money.json` / `prices.json` 提交进仓库（`.gitignore` 已覆盖）。
 - 不要在代码或文档里硬编码本机路径、真实端口、令牌、个人邮箱。

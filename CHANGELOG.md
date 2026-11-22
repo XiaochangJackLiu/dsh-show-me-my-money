@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Both READMEs point at `AGENTS.md` from their Development section.
+- `AGENTS.md` now records the release procedure end to end: version bump,
+  CHANGELOG close-out, annotated tag, tag push, GitHub Release with
+  `--verify-tag`, verification, and rollback.
 
 ## [1.0.0] - 2026-11-22
 
